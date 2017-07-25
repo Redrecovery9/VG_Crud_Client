@@ -12,8 +12,10 @@ $(document).ready(function() {
       let rating = vg[i].rating
       $('.table_body').append(
         `<tr><td>${name}</td><td>${platform}</td><td>${beaten}</td><td>${rating}</td>
-        <td><button type="button" class="btn btn-default">X</button></td>
-        <td><button type="button" class="btn btn-default">👾</button></td></tr>`
+        <td><button type="button" class="btn btn-default">👾</button></td>
+        <td><button type="button" class="btn btn-default">Edit
+        <span class="glyphicon glyphicon-wrench"></span></button></td>
+        <td><button type="button" class="btn btn-default">X</button></td></tr>`
       )
     }
   })
