@@ -38,3 +38,16 @@ a {
 th {
   background-color: #ff8300;
 }
+
+
+
+.footer-bottom {
+  background-color: black;
+  color: #ff8300;
+  position: fixed;
+  height: 4em;
+  left: 0;
+  bottom: 0;
+  z-index: 1000;
+  width: 100%;
+}
