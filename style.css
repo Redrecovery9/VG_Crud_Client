@@ -39,6 +39,11 @@ th {
   background-color: #ff8300;
 }
 
+.add-button {
+  background-color: #ff8300;
+  font-size: 1.5em;
+}
+
 .footer-bottom {
   background-color: black;
   color: #ff8300;

@@ -1,4 +1,5 @@
 const baseURL = 'https://sleepy-forest-72827.herokuapp.com/videogames'
+const test = 'https://localhost:1995'
 
 $(document).ready(function() {
   $.get(baseURL)
@@ -20,7 +21,26 @@ $(document).ready(function() {
       )
     }
     $('.modal-body').append(
-      `<form>
+      `<form class='form-inline'>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Title</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Halo 3">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Platform</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Platform">
+        </div><br>
+        <div class='form-group'>
+          <label for="role"></label>
+          <select id="rating" class="rating" name="rating">
+            <option value="select" selected disabled>Select a Number</option>
+            <option value="select" >1</option>
+            <option value="select" >2</option>
+            <option value="select" >3</option>
+            <option value="select" >4</option>
+            <option value="select" >5</option>
+          </select>
+        </div>
         <div class="btn-group" data-toggle="buttons">
           <h5>Have you beaten<br>the game?</h5>
           <label class="btn btn-default active">
