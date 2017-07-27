@@ -1,28 +1,53 @@
 const baseURL = 'https://sleepy-forest-72827.herokuapp.com/'
 
 $(document).ready(function() {
-  $.get(baseURL)
+  // $.get(baseURL)
+  $.get('http://localhost:1995/')
   .then(updateTable)
 
   $('.add-save').click((event) => {
     event.preventDefault()
-    let $title = $('#add-name').val()
-    let $platform = $('#add-platform').val()
-    let $beaten = $('input[name=post-options]:checked').val()
-    let $rating = $('#add-rating').val()
 
-    let post = {
-      name: $title,
-      platform: $platform,
-      beaten: $beaten,
-      rating: $rating
+    let data = {
+      name: $('#add-name').val(),
+      platform: $('#add-platform').val(),
+      beaten: $('input[name=post-options]:checked').val(),
+      rating: $('#add-rating').val()
     }
 
-    $.post(baseURL, post)
+    $.post(baseURL, data)
       .then(newPost => {
         $.get(baseURL)
         .then(updateTable)
       })
+  })
+
+  $('.put-save').click((event) => {
+    event.preventDefault()
+    let id = event.target.name
+
+    let data = {
+      name: $('#edit-name').val() === '' ? undefined : $('#edit-name').val(),
+      platform: $('#edit-platform').val() === '' ? undefined : $('#edit-platform').val(),
+      beaten: $('input[name=put-options]:checked').val(),
+      rating: $('#edit-rating').val()
+    }
+    console.log('leaving');
+    console.log(data);
+
+    $.ajax({
+      // url: `https://sleepy-forest-72827.herokuapp.com/${parseInt(id)}`, // your api url
+      url: `http://localhost:1995/${parseInt(id)}`,
+      // jQuery < 1.9.0 -> use type
+      // jQuery >= 1.9.0 -> use method
+      method: 'PUT', // method is any HTTP method
+      data: data, // data as js object
+      success: function(data) {
+        // $.get(baseURL)
+        $.get('http://localhost:1995/')
+        .then(updateTable)
+      }
+    });
   })
 
 
@@ -35,6 +60,8 @@ $(document).ready(function() {
       let name = vg[i].name
       let platform = vg[i].platform
       let beaten = vg[i].beaten
+      console.log('database');
+      console.log(beaten, name);
       let rating = vg[i].rating
       $('.table_body').append(
         `<tr><td>${name}</td><td>${platform}</td><td>${beaten}</td><td>${rating}</td>
@@ -49,27 +76,32 @@ $(document).ready(function() {
     $('.edit-button').click((event) => {
       event.preventDefault()
       let target = event.target.id;
-      $.get(`https://sleepy-forest-72827.herokuapp.com/${target}`)
+      // $.get(`https://sleepy-forest-72827.herokuapp.com/${target}`)
+      $.get(`http://localhost:1995/${target}`)
       .then((editForm) => {
         let name = editForm.name
         let platform = editForm.platform
         let beaten = editForm.beaten
         let rating = editForm.rating
-        console.log(beaten);
+        let id = editForm.id
 
         let $title = $('#edit-name').val(`${name}`)
         let $platform = $('#edit-platform').val(`${platform}`)
         if (beaten == true) {
           $('#true').attr('checked', true)
+          $('#false').attr('checked', false)
           unactiveFalse()
           activeTrue()
         }
-        else if (beaten == false) {
+        else {
+          $('#true').attr('checked', false)
           $('#false').attr('checked', true)
           unactiveTrue()
           activeFalse()
         }
+
         let $rating = $('#edit-rating').val(`${rating}`)
+        $('#saveButton').attr('name', id)
       })
     })
   }
