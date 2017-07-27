@@ -1,5 +1,4 @@
 const baseURL = 'https://sleepy-forest-72827.herokuapp.com/'
-const idURL = 'https://sleepy-forest-72827.herokuapp.com/:id'
 
 $(document).ready(function() {
   $.get(baseURL)
@@ -25,6 +24,8 @@ $(document).ready(function() {
         .then(updateTable)
       })
   })
+
+
   function updateTable(data) {
     const vg = data
 
@@ -44,5 +45,46 @@ $(document).ready(function() {
         <td><button type="button" class="btn btn-default">X</button></td></tr>`
       )
     }
+
+    $('.edit-button').click((event) => {
+      event.preventDefault()
+      let target = event.target.id;
+      $.get(`https://sleepy-forest-72827.herokuapp.com/${target}`)
+      .then((editForm) => {
+        let name = editForm.name
+        let platform = editForm.platform
+        let beaten = editForm.beaten
+        let rating = editForm.rating
+        console.log(beaten);
+
+        let $title = $('#edit-name').val(`${name}`)
+        let $platform = $('#edit-platform').val(`${platform}`)
+        if (beaten == true) {
+          $('#true').attr('checked', true)
+          unactiveFalse()
+          activeTrue()
+        }
+        else if (beaten == false) {
+          $('#false').attr('checked', true)
+          unactiveTrue()
+          activeFalse()
+        }
+        let $rating = $('#edit-rating').val(`${rating}`)
+      })
+    })
   }
+  function activeTrue() {
+    $('.true-radio').addClass('active')
+  }
+  function unactiveTrue() {
+  $('.true-radio').removeClass('active')
+  }
+  function activeFalse() {
+    $('.false-radio').addClass('active')
+  }
+  function unactiveFalse() {
+  $('.false-radio').removeClass('active')
+  }
+
+
 })

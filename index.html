@@ -65,30 +65,30 @@
             <form class='form-inline'>
               <div class="form-group">
                 <label for="name">Title</label>
-                <input type="email" class="form-control" id="name" placeholder="Halo 3">
+                <input class="form-control" id="edit-name" value="">
               </div>
               <div class="form-group">
                 <label for="platform">Platform</label>
-                <input type="password" class="form-control" id="platform" placeholder="Platform">
+                <input class="form-control" id="edit-platform" value="">
               </div><br>
               <div class='form-group'>
                 <label for="role"></label>
-                <select id="rating" class="rating" name="rating">
+                <select id="edit-rating" class="rating" name="rating">
                   <option value="select" selected disabled>Select a Number</option>
-                  <option value="select" >1</option>
-                  <option value="select" >2</option>
-                  <option value="select" >3</option>
-                  <option value="select" >4</option>
-                  <option value="select" >5</option>
+                  <option value="1" >1</option>
+                  <option value="2" >2</option>
+                  <option value="3" >3</option>
+                  <option value="4" >4</option>
+                  <option value="5" >5</option>
                 </select>
               </div>
               <div class="btn-group" data-toggle="buttons">
                 <h5>Have you beaten<br>the game?</h5>
-                <label class="btn btn-default active">
-                  <input type="radio" name="options" id="option1.2" autocomplete="off" checked> False
+                <label class="btn btn-default false-radio">
+                  <input type="radio" name="put-options" id="false" autocomplete="off" value="false" checked> False
                 </label>
-                <label class="btn btn-default">
-                  <input type="radio" name="options" id="option2.2" autocomplete="off"> True
+                <label class="btn btn-default true-radio">
+                  <input type="radio" name="put-options" id="true" autocomplete="off" value="true"> True
                 </label>
               </div>
             </form>
@@ -96,7 +96,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-default put-save">Save changes</button>
+            <button type="button" class="btn btn-default put-save" data-dismiss="modal">Save changes</button>
           </div>
         </div>
       </div>
