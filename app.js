@@ -34,7 +34,7 @@ $(document).ready(function() {
 
     $.ajax({
       url: `https://sleepy-forest-72827.herokuapp.com/${parseInt(id)}`,
-      method: 'PUT', 
+      method: 'PUT',
       data: data,
       success: function(data) {
         $.get(baseURL)
@@ -42,21 +42,6 @@ $(document).ready(function() {
       }
     });
   })
-
-  $('.delete-button').click((event) => {
-    event.preventDefault()
-    let target = event.target.id;
-
-    $.ajax({
-      url: `https://sleepy-forest-72827.herokuapp.com/${target}`,
-      method: 'DELETE',
-      success: function(data) {
-        $.get(baseURL)
-        .then(updateTable)
-      }
-    });
-  })
-
 
   function updateTable(data) {
     const vg = data
@@ -109,6 +94,19 @@ $(document).ready(function() {
       })
     })
 
+    $('.delete-button').click((event) => {
+      event.preventDefault()
+      let target = event.target.id;
+
+      $.ajax({
+        url: `https://sleepy-forest-72827.herokuapp.com/${target}`,
+        method: 'DELETE',
+        success: function(data) {
+          $.get(baseURL)
+          .then(updateTable)
+        }
+      });
+    })
 
   }
   function activeTrue() {
