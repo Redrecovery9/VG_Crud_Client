@@ -1,8 +1,7 @@
 const baseURL = 'https://sleepy-forest-72827.herokuapp.com/'
 
 $(document).ready(function() {
-  // $.get(baseURL)
-  $.get('http://localhost:1995/')
+  $.get(baseURL)
   .then(updateTable)
 
   $('.add-save').click((event) => {
@@ -36,15 +35,13 @@ $(document).ready(function() {
     console.log(data);
 
     $.ajax({
-      // url: `https://sleepy-forest-72827.herokuapp.com/${parseInt(id)}`, // your api url
-      url: `http://localhost:1995/${parseInt(id)}`,
+      url: `https://sleepy-forest-72827.herokuapp.com/${parseInt(id)}`, // your api url
       // jQuery < 1.9.0 -> use type
       // jQuery >= 1.9.0 -> use method
       method: 'PUT', // method is any HTTP method
       data: data, // data as js object
       success: function(data) {
-        // $.get(baseURL)
-        $.get('http://localhost:1995/')
+        $.get(baseURL)
         .then(updateTable)
       }
     });
@@ -76,8 +73,7 @@ $(document).ready(function() {
     $('.edit-button').click((event) => {
       event.preventDefault()
       let target = event.target.id;
-      // $.get(`https://sleepy-forest-72827.herokuapp.com/${target}`)
-      $.get(`http://localhost:1995/${target}`)
+      $.get(`https://sleepy-forest-72827.herokuapp.com/${target}`)
       .then((editForm) => {
         let name = editForm.name
         let platform = editForm.platform
