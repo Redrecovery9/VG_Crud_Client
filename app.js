@@ -31,15 +31,25 @@ $(document).ready(function() {
       beaten: $('input[name=put-options]:checked').val(),
       rating: $('#edit-rating').val()
     }
-    console.log('leaving');
-    console.log(data);
 
     $.ajax({
-      url: `https://sleepy-forest-72827.herokuapp.com/${parseInt(id)}`, // your api url
-      // jQuery < 1.9.0 -> use type
-      // jQuery >= 1.9.0 -> use method
-      method: 'PUT', // method is any HTTP method
-      data: data, // data as js object
+      url: `https://sleepy-forest-72827.herokuapp.com/${parseInt(id)}`,
+      method: 'PUT', 
+      data: data,
+      success: function(data) {
+        $.get(baseURL)
+        .then(updateTable)
+      }
+    });
+  })
+
+  $('.delete-button').click((event) => {
+    event.preventDefault()
+    let target = event.target.id;
+
+    $.ajax({
+      url: `https://sleepy-forest-72827.herokuapp.com/${target}`,
+      method: 'DELETE',
       success: function(data) {
         $.get(baseURL)
         .then(updateTable)
@@ -57,8 +67,6 @@ $(document).ready(function() {
       let name = vg[i].name
       let platform = vg[i].platform
       let beaten = vg[i].beaten
-      console.log('database');
-      console.log(beaten, name);
       let rating = vg[i].rating
       $('.table_body').append(
         `<tr><td>${name}</td><td>${platform}</td><td>${beaten}</td><td>${rating}</td>
@@ -66,7 +74,7 @@ $(document).ready(function() {
         <td><button id="${id}" type="button" class="btn btn-default edit-button" data-toggle="modal" data-target="#putModal">
           Edit
         <span class="glyphicon glyphicon-wrench"></span></button></td>
-        <td><button type="button" class="btn btn-default">X</button></td></tr>`
+        <td><button type="button" id="${id}" class="btn btn-default delete-button">X</button></td></tr>`
       )
     }
 
@@ -100,6 +108,8 @@ $(document).ready(function() {
         $('#saveButton').attr('name', id)
       })
     })
+
+
   }
   function activeTrue() {
     $('.true-radio').addClass('active')
