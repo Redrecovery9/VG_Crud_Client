@@ -1,7 +1,9 @@
+const token = localStorage.getItem('token');
 const baseURL = 'https://sleepy-forest-72827.herokuapp.com/'
+const localURL = 'http://localhost:1995/'
 
 $(document).ready(function() {
-  $.get(baseURL)
+  $.get(localURL)
   .then(updateTable)
 
   $('.add-save').click((event) => {
@@ -14,9 +16,9 @@ $(document).ready(function() {
       rating: $('#add-rating').val()
     }
 
-    $.post(baseURL, data)
+    $.post(localURL, data)
       .then(newPost => {
-        $.get(baseURL)
+        $.get(localURL)
         .then(updateTable)
       })
   })
@@ -37,7 +39,7 @@ $(document).ready(function() {
       method: 'PUT',
       data: data,
       success: function(data) {
-        $.get(baseURL)
+        $.get(localURL)
         .then(updateTable)
       }
     });
@@ -102,13 +104,14 @@ $(document).ready(function() {
         url: `https://sleepy-forest-72827.herokuapp.com/${target}`,
         method: 'DELETE',
         success: function(data) {
-          $.get(baseURL)
+          $.get(localURL)
           .then(updateTable)
         }
       });
     })
 
   }
+
   function activeTrue() {
     $('.true-radio').addClass('active')
   }

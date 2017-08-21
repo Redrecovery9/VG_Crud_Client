@@ -8,151 +8,89 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <nav class='navbar navbar-fixed-top'>
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class='navbar-brand' href="#">OutPlayed</a>
-        </div>
-        <form class="navbar-form navbar-right">
-          <input type="text" class="form-control" placeholder="Search...">
-        </form>
-      </div>
-    </nav>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-          <ul class='nav navsidebar'>
-            <li class='active'><a href="#">Played Video Games</a></li>
-            <li><a href="#">Favorites</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class='page-header'>Games Played</h1>
-          <div class="table-responsive">
-            <table class='table table-striped'>
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Platform</th>
-                  <th>Beaten Y/N</th>
-                  <th>Personal Rating</th>
-                  <th>Favorite</th>
-                  <th>Edit</th>
-                  <th>Delete</th>
-                  <th><button type="button" class="btn btn-default add-button" data-toggle="modal" data-target="#postModal">+</button>
-                </tr>
-              </thead>
-              <tbody class='table_body'>
-              </tbody>
-            </table>
-        </div>
+    <div class='container'>
+      <div class="jumbotron">
+        <h1>OutPlayed</h1>
       </div>
     </div>
-    <footer class='footer-bottom'>
-      <div class="container">
-        <small>&copy; Copyright 2017, OutPlayed</small>
-      </div>
-    </footer>
-
-    <div class="modal fade" id="putModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Edit</h4>
-          </div>
-          <div class="modal-body">
-            <form class='form-inline'>
-              <div class="form-group">
-                <label for="name">Title</label>
-                <input class="form-control" id="edit-name" value="">
-              </div>
-              <div class="form-group">
-                <label for="platform">Platform</label>
-                <input class="form-control" id="edit-platform" value="">
-              </div><br>
-              <div class='form-group'>
-                <label for="role"></label>
-                <select id="edit-rating" class="rating" name="rating">
-                  <option value="select" selected disabled>Select a Number</option>
-                  <option value="1" >1</option>
-                  <option value="2" >2</option>
-                  <option value="3" >3</option>
-                  <option value="4" >4</option>
-                  <option value="5" >5</option>
-                </select>
-              </div>
-              <div class="btn-group" data-toggle="buttons">
-                <h5>Have you beaten<br>the game?</h5>
-                <label class="btn btn-default false-radio">
-                  <input type="radio" name="put-options" id="false" autocomplete="off" value="false"> False
-                </label>
-                <label class="btn btn-default true-radio">
-                  <input type="radio" name="put-options" id="true" autocomplete="off" value="true"> True
-                </label>
-              </div>
-            </form>
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button id='saveButton' name='' type="button" class="btn btn-default put-save" data-dismiss="modal">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Add</h4>
-          </div>
-          <div class="modal-body">
-            <form class='form-inline'>
-              <div class="form-group">
-                <label for="add-name">Title</label>
-                <input  class="form-control" id="add-name" value="">
-              </div>
-              <div class="form-group">
-                <label for="add-platform">Platform</label>
-                <input  class="form-control" id="add-platform" value="">
-              </div><br>
-              <div class='form-group'>
-                <label for="role"></label>
-                <select id="add-rating" class="rating" name="rating" value="">
-                  <option value="select" selected disabled>Select a Number</option>
-                  <option value="1" >1</option>
-                  <option value="2" >2</option>
-                  <option value="3" >3</option>
-                  <option value="4" >4</option>
-                  <option value="5" >5</option>
-                </select>
-              </div>
-              <div class="btn-group" data-toggle="buttons">
-                <h5>Have you beaten<br>the game?</h5>
-                <label class="btn btn-default active">
-                  <input type="radio" name="post-options" id="option1.0" autocomplete="off" value='false' checked> False
-                </label>
-                <label class="btn btn-default">
-                  <input type="radio" name="post-options" id="option2.0" autocomplete="off" value="true"> True
-                </label>
-              </div>
-            </form>
-
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-default add-save" data-dismiss="modal">Save changes</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="container">
+        <div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-login">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-xs-6">
+								<a href="#" class="active" id="login-form-link">Login</a>
+							</div>
+							<div class="col-xs-6">
+								<a href="#" id="register-form-link">Register</a>
+							</div>
+						</div>
+						<hr>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+								<form id="login-form" method="post" role="form" style="display: block;">
+									<div class="form-group">
+										<input type="email" name="login-email" id="login-email" tabindex="1" class="form-control" placeholder="Email" value="">
+									</div>
+									<div class="form-group">
+										<input type="password" name="login-password" id="login-password" tabindex="2" class="form-control" placeholder="Password">
+									</div>
+									<!-- <div class="form-group text-center">
+										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
+										<label for="remember"> Remember Me</label>
+									</div> -->
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+											</div>
+										</div>
+									</div>
+									<!-- <div class="form-group">
+										<div class="row">
+											<div class="col-lg-12">
+												<div class="text-center">
+													<a href="http://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+												</div>
+											</div>
+										</div>
+									</div> -->
+								</form>
+								<form id="register-form" method="post" role="form" style="display: none;">
+									<div class="form-group">
+										<input type="text" name="signup-username" id="signup-username" tabindex="1" class="form-control" placeholder="Username" value="">
+									</div>
+									<div class="form-group">
+										<input type="email" name="signup-email" id="signup-email" tabindex="1" class="form-control" placeholder="Email Address" value="">
+									</div>
+									<div class="form-group">
+										<input type="password" name="signup-password" id="signup-password" tabindex="2" class="form-control" placeholder="Password">
+									</div>
+									<div class="form-group">
+										<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password">
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="app.js"></script>
+    <script src="auth.js"></script>
   </body>
 </html>

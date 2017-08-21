@@ -1,0 +1,56 @@
+body {
+  background-color: #e8e8e8;
+}
+
+.navbar {
+  background-color: black;
+}
+
+.navbar-brand {
+  color: #ff8300;
+  font-size: 3em;
+  font-weight: bolder;
+}
+
+.sidebar {
+  background-color: black;
+  position: fixed;
+  top: 51px;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  display: block;
+  padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-right: 1px solid #eee;
+}
+
+a {
+  color: white;
+  font-size: 1.5em;
+}
+
+.main {
+  top: 34px;
+}
+
+th {
+  background-color: #ff8300;
+}
+
+.add-button {
+  background-color: #ff8300;
+  font-size: 1.5em;
+}
+
+.footer-bottom {
+  background-color: black;
+  color: #ff8300;
+  position: fixed;
+  height: 4em;
+  left: 0;
+  bottom: 0;
+  z-index: 1000;
+  width: 100%;
+}
