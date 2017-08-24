@@ -1,10 +1,17 @@
-const token = localStorage.getItem('token');
-const baseURL = 'https://sleepy-forest-72827.herokuapp.com/'
-const localURL = 'http://localhost:1995/'
-
 $(document).ready(function() {
-  $.get(localURL)
-  .then(updateTable)
+
+  let status = authorizeUser()
+  setTokenHeader()
+  $('.signOut').click(logout)
+
+
+  if(status){
+    displayTable()
+  }
+  else {
+    location.href = "/index.html"
+  }
+
 
   $('.add-save').click((event) => {
     event.preventDefault()
@@ -16,10 +23,12 @@ $(document).ready(function() {
       rating: $('#add-rating').val()
     }
 
-    $.post(localURL, data)
+    $.post(baseURL, data)
       .then(newPost => {
-        $.get(localURL)
-        .then(updateTable)
+        $.get(baseURL)
+        .then((data)=> {
+          $('.table_body').empty()
+          data.forEach(game => appendTable(game))
       })
   })
 
@@ -35,40 +44,42 @@ $(document).ready(function() {
     }
 
     $.ajax({
-      url: `https://sleepy-forest-72827.herokuapp.com/${parseInt(id)}`,
+      url: baseURL + `${parseInt(id)}`,
       method: 'PUT',
       data: data,
       success: function(data) {
-        $.get(localURL)
-        .then(updateTable)
+        $.get(baseURL)
+        .then((data)=> {
+          $('.table_body').empty()
+          data.forEach(game => appendTable(game))
+        })
       }
-    });
+    })
   })
 
-  function updateTable(data) {
+  function appendTable(data) {
     const vg = data
 
-    $('.table_body').empty()
-    for(let i = 0; i < data.length; i++) {
-      let id = vg[i].id;
-      let name = vg[i].name
-      let platform = vg[i].platform
-      let beaten = vg[i].beaten
-      let rating = vg[i].rating
+
+      let id = vg.id;
+      let name = vg.name
+      let platform = vg.platform
+      let beaten = vg.beaten
+      let rating = vg.rating
+      let user = vg.users_id
       $('.table_body').append(
         `<tr><td>${name}</td><td>${platform}</td><td>${beaten}</td><td>${rating}</td>
         <td><button type="button" class="btn btn-default">👾</button></td>
         <td><button id="${id}" type="button" class="btn btn-default edit-button" data-toggle="modal" data-target="#putModal">
           Edit
         <span class="glyphicon glyphicon-wrench"></span></button></td>
-        <td><button type="button" id="${id}" class="btn btn-default delete-button">X</button></td></tr>`
+        <td><button type="button" id="${id}" class="btn btn-default ${user} delete-button">X</button></td></tr>`
       )
-    }
 
     $('.edit-button').click((event) => {
       event.preventDefault()
       let target = event.target.id;
-      $.get(`https://sleepy-forest-72827.herokuapp.com/${target}`)
+      $.get(baseURL + `${target}`)
       .then((editForm) => {
         let name = editForm.name
         let platform = editForm.platform
@@ -101,11 +112,13 @@ $(document).ready(function() {
       let target = event.target.id;
 
       $.ajax({
-        url: `https://sleepy-forest-72827.herokuapp.com/${target}`,
+        url: baseURL + `${target}`,
         method: 'DELETE',
         success: function(data) {
-          $.get(localURL)
-          .then(updateTable)
+          $.get(baseURL)
+          .then((data)=> {
+            $('.table_body').empty()
+            data.forEach(game => appendTable(game))
         }
       });
     })
@@ -125,5 +138,29 @@ $(document).ready(function() {
   $('.false-radio').removeClass('active')
   }
 
+  function logout() {
+    localStorage.removeItem('token')
+    location.href = "/index.html"
+  }
+
+  function parseJWT (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+  };
+
+  function displayTable() {
+    const parsedToken = parseJWT(token)
+    console.log(parsedToken);
+    $.get(baseURL + `auth/users/${parsedToken.id}/games`)
+    .then(response => {
+      if (response.data.length === 0) {
+        appendTable('You don\'t have any games yet... or do you?')
+      } else {
+        $('.table_body').empty()
+        response.data.forEach(game => appendTable(game))
+      }
+    })
+  }
 
 })

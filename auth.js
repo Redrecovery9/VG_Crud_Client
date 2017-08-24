@@ -2,6 +2,8 @@ const token = localStorage.getItem('token');
 const baseURL = 'https://sleepy-forest-72827.herokuapp.com/'
 const localURL = 'http://localhost:1995/'
 
+
+
 $(function() {
 
     $('#login-form-link').click(function(e) {
@@ -29,7 +31,6 @@ function authorizeUser() {
   if(token){
     status = true;
   }
-
   return status;
 }
 
@@ -45,7 +46,7 @@ function logIn(event) {
   }
   data = {email,password}
 
-  $.post(localURL + 'auth/login', data)
+  $.post(baseURL + 'auth/login', data)
     .then(response => {
       if(response.error) {
         alert(response.error)
@@ -70,20 +71,15 @@ function signUp(event,){
   }
     data = {username, email, password}
 
-  $.post(localURL + 'auth/login', data)
+  $.post(baseURL + 'auth/login', data)
     .then(response => {
       if (!response || response.error) {
         alert("Email Address Already in Use")
       } else {
         localStorage.setItem('token', response.data)
-        location.href = '/'
+        location.href = '/user.html'
       }
     })
-}
-
-function logout() {
-  localStorage.removeItem('token')
-  location.href = '/'
 }
 
 function setTokenHeader() {

@@ -12,6 +12,11 @@ body {
   font-weight: bolder;
 }
 
+.signOut {
+  background-color: #ff8300;
+  color: black;
+}
+
 .sidebar {
   background-color: black;
   position: fixed;
